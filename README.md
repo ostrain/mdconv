@@ -13,19 +13,22 @@ by doing a print-to-PDF on the HTML version). It also converts "dumb quotes" to
 
 ### Requirements
 
-You'll need `make` installed. On macOS, you may need to install Apple's [Xcode
-command line
-tools](https://developer.apple.com/library/archive/technotes/tn2339/_index.html)
+Perl is required. It is preinstalled on macOS.
+
+`make` is required. On macOS, you may need to install Apple's [Xcode command
+line tools](https://developer.apple.com/library/archive/technotes/tn2339/_index.html)
 to install `make`.
 
 To generate PDFs, Chrome is required. Chrome 84 or newer is preferred since
 those versions support an option to omit the ugly header and footer from the
 PDF. By default it will look for Chrome in the standard macOS location of
-`/Applications`. If Chome is installed somewhere else on your system, you will
-need to update the `CHROME_BINARY` variable at the top of the Makefile to point
-to your copy of Chrome.
+`/Applications`. If Chome is installed somewhere else on your system, there are
+two ways to tell the converter tool:
 
-Perl is required. It is preinstalled on macOS.
+1. Export an environment variable, `$CHROME_BINARY`, containing the path to
+   Chrome on your system.
+2. Edit the `CHROME_BINARY` variable at the top of the Makefile to contain the
+   correct path to Chrome on your system.
 
 
 ### Installation

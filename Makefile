@@ -1,4 +1,4 @@
-CHROME_BINARY = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+CHROME_BINARY ?= "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 
 %.htm: %.md templates/header.htm templates/footer.htm
 	./tools/Markdown.pl $< | ./tools/SmartyPants.pl | cat templates/header.htm - templates/footer.htm > $@
