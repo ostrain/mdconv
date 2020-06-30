@@ -34,7 +34,8 @@ two ways to tell the converter tool:
 ### Installation
 
 The Markdown and SmartyPants scipts are required to run this tool. To download
-and install them, simply run `make install`.
+and install them, simply run `make install`. They will be downloaded to
+`./tools/`.
 
 ## Usage
 
@@ -50,3 +51,14 @@ filenames must match.
 You can try it out with this README.md file by running:
 
     make README.htm README.pdf
+
+### Customization
+
+The tool generates the final HTML file in a very simple way: it converts the
+input Markdown document to HTML tags, then prepends the contents of
+`templates/header.htm` and appends the contents of `templates/footer.htm` to
+assemble a full HTML document including CSS.
+
+This means that if you'd like to customize the resulting HTML file, say to add a
+`<title>` tag or edit the CSS, all you have to do is edit `templates/header.htm`
+with your changes and re-run the `make` command.
