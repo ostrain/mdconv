@@ -22,12 +22,12 @@ to install `make`.
 To generate PDFs, Chrome is required. Chrome 84 or newer is preferred since
 those versions support an option to omit the ugly header and footer from the
 PDF. By default it will look for Chrome in the standard macOS location of
-`/Applications`. If Chome is installed somewhere else on your system, there are
-two ways to tell the converter tool:
+`/Applications`. If Chome is installed somewhere else on your system, use one of
+these two ways to tell the converter tool:
 
-1. Export an environment variable, `$CHROME_BINARY`, containing the path to
+*  Export an environment variable, `$CHROME_BINARY`, containing the path to
    Chrome on your system.
-2. Edit the `CHROME_BINARY` variable at the top of the Makefile to contain the
+*  Edit the `CHROME_BINARY` variable near the top of the Makefile to contain the
    correct path to Chrome on your system.
 
 
@@ -57,8 +57,20 @@ You can try it out with this README.md file by running:
 The tool generates the final HTML file in a very simple way: it converts the
 input Markdown document to HTML tags, then prepends the contents of
 `templates/header.htm` and appends the contents of `templates/footer.htm` to
-assemble a full HTML document including CSS.
+assemble a full HTML document (including CSS in the header).
 
 This means that if you'd like to customize the resulting HTML file, say to add a
 `<title>` tag or edit the CSS, all you have to do is edit `templates/header.htm`
 with your changes and re-run the `make` command.
+
+You can also override the location of the `templates` directory by exporting a
+`$TEMPLATES_DIR` environment variable.
+
+### Building Files In Other Directories
+
+This Makefile supports being run from another directory (which can be useful if
+you want to run it from a script). For example to convert `myfile.md` in
+whatever directory you're in, you could run:
+
+    make -f /path/to/mdconv/Makefile myfile.htm myfile.pdf
+
