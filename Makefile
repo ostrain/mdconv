@@ -3,17 +3,17 @@ SHELL=/bin/bash -o pipefail
 
 
 # You can override these by setting environment variables of the same name
-CHROME_BINARY ?= "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-TEMPLATES_DIR ?= $(ROOT_DIR)/templates
+MDCONV_CHROME_BINARY ?= "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+MDCONV_TEMPLATES_DIR ?= $(ROOT_DIR)/templates
 
 
 # Convert a .md file to a .htm file
-%.htm: %.md $(TEMPLATES_DIR)/header.htm $(TEMPLATES_DIR)/footer.htm
-	$(ROOT_DIR)/tools/Markdown.pl $< | $(ROOT_DIR)/tools/SmartyPants.pl | cat $(TEMPLATES_DIR)/header.htm - $(TEMPLATES_DIR)/footer.htm > $@
+%.htm: %.md $(MDCONV_TEMPLATES_DIR)/header.htm $(MDCONV_TEMPLATES_DIR)/footer.htm
+	$(ROOT_DIR)/tools/Markdown.pl $< | $(ROOT_DIR)/tools/SmartyPants.pl | cat $(MDCONV_TEMPLATES_DIR)/header.htm - $(MDCONV_TEMPLATES_DIR)/footer.htm > $@
 
 # Convert a .md file to a .pdf file
 %.pdf: %.htm
-	$(CHROME_BINARY) --headless --disable-gpu --print-to-pdf-no-header "--print-to-pdf=$(PWD)/$@" "$(PWD)/$<"
+	$(MDCONV_CHROME_BINARY) --headless --disable-gpu --print-to-pdf-no-header "--print-to-pdf=$(PWD)/$@" "$(PWD)/$<"
 
 
 # Install required tools
